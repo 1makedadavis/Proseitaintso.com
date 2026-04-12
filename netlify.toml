@@ -1,9 +1,9 @@
-[[redirects]]
-  from = "/.netlify/functions/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-  force = true
-  conditions = {Method = ["GET", "POST", "OPTIONS"]}
+[build]
+  edge_functions = "netlify/edge-functions"
 
 [functions]
   directory = "netlify/functions"
+
+[[edge_functions]]
+  path = "/.netlify/functions/sai"
+  function = "sai"
