@@ -1,6 +1,8 @@
 const https = require('https');
 
 exports.handler = async (event) => {
+  exports.handler = async (event) => {
+  console.log('API KEY:', process.env.ANTHROPIC_API_KEY ? 'EXISTS - length: ' + process.env.ANTHROPIC_API_KEY.length : 'MISSING');
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': '*',
