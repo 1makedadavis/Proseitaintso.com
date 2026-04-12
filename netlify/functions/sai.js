@@ -1,44 +1,45 @@
-exports.handler = async function(event, context) {
+const https = require('https');
+
+exports.handler = async (event) => {
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': '*',
+    'Access-Control-Allow-Methods': '*'
+  };
+
   if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS'
-      },
-      body: ''
-    };
+    return { statusCode: 200, headers, body: '' };
   }
 
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
-  }
-
-  try {
-    const body = JSON.parse(event.body);
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+  return new Promise((resolve) => {
+    const options = {
+      hostname: 'api.anthropic.com',
+      path: '/v1/messages',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': process.env.ANTHROPIC_API_KEY,
         'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify(body)
+      }
+    };
+
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => resolve({
+        statusCode: 200,
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: data
+      }));
     });
-    const data = await response.json();
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    };
-  } catch (error) {
-    return {
+
+    req.on('error', () => resolve({
       statusCode: 500,
-      body: JSON.stringify({ error: 'Internal server error' })
-    };
-  }
+      headers,
+      body: JSON.stringify({ error: 'Request failed' })
+    }));
+
+    req.write(event.body);
+    req.end();
+  });
 };
