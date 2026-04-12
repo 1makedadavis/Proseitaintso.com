@@ -418,13 +418,145 @@
       to set up your account and get started.
     </p>
 
-    <div class="google-form-wrap">
-      <iframe
-        src="https://forms.gle/ViyRU1Ch36pC68T98"
-        title="Family Portal Registration Form"
-        allowfullscreen>
-        Loading form...
-      </iframe>
+    <!-- FAMILY PORTAL FORM -->
+    <div class="google-form-wrap" style="background:var(--warm-white); border-radius:16px; padding:2.5rem; border:1px solid var(--border);">
+
+      <form id="portalForm" action="https://formspree.io/f/xbdqrppz" method="POST">
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
+          <div>
+            <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Your Full Name *</label>
+            <input type="text" name="your_name" required
+              style="width:100%; padding:0.75rem 1rem; background:var(--cream); border:1px solid var(--border); border-radius:8px; font-family:'Nunito',sans-serif; font-size:0.95rem; color:var(--ink); outline:none;"
+              placeholder="First and last name">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Your Email *</label>
+            <input type="email" name="email" required
+              style="width:100%; padding:0.75rem 1rem; background:var(--cream); border:1px solid var(--border); border-radius:8px; font-family:'Nunito',sans-serif; font-size:0.95rem; color:var(--ink); outline:none;"
+              placeholder="your@email.com">
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
+          <div>
+            <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Your Phone (optional)</label>
+            <input type="tel" name="phone"
+              style="width:100%; padding:0.75rem 1rem; background:var(--cream); border:1px solid var(--border); border-radius:8px; font-family:'Nunito',sans-serif; font-size:0.95rem; color:var(--ink); outline:none;"
+              placeholder="(000) 000-0000">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Plan Interested In *</label>
+            <select name="plan" required
+              style="width:100%; padding:0.75rem 1rem; background:var(--cream); border:1px solid var(--border); border-radius:8px; font-family:'Nunito',sans-serif; font-size:0.95rem; color:var(--ink); outline:none;">
+              <option value="">Select a plan...</option>
+              <option>Family Support Plan — $24.99/mo</option>
+              <option>Basic Plan — $9.99/mo</option>
+              <option>Standard Plan — $19.99/mo</option>
+              <option>Pro Plan — $39.99/mo</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
+          <div>
+            <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Loved One's Name *</label>
+            <input type="text" name="loved_one_name" required
+              style="width:100%; padding:0.75rem 1rem; background:var(--cream); border:1px solid var(--border); border-radius:8px; font-family:'Nunito',sans-serif; font-size:0.95rem; color:var(--ink); outline:none;"
+              placeholder="First and last name">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Facility Name & Location *</label>
+            <input type="text" name="facility" required
+              style="width:100%; padding:0.75rem 1rem; background:var(--cream); border:1px solid var(--border); border-radius:8px; font-family:'Nunito',sans-serif; font-size:0.95rem; color:var(--ink); outline:none;"
+              placeholder="Facility name, city, state">
+          </div>
+        </div>
+
+        <div style="margin-bottom:1.25rem;">
+          <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Document Type Needed *</label>
+          <select name="document_type" required
+            style="width:100%; padding:0.75rem 1rem; background:var(--cream); border:1px solid var(--border); border-radius:8px; font-family:'Nunito',sans-serif; font-size:0.95rem; color:var(--ink); outline:none;">
+            <option value="">Select document type...</option>
+            <option>Habeas Corpus Petition</option>
+            <option>440 Motion / Post-Conviction Motion</option>
+            <option>Appeal Brief</option>
+            <option>Parole Board Packet</option>
+            <option>Clemency Application</option>
+            <option>Court Correspondence</option>
+            <option>Divorce Documents</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:1.25rem;">
+          <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Brief Description of the Case</label>
+          <textarea name="description" rows="4"
+            style="width:100%; padding:0.75rem 1rem; background:var(--cream); border:1px solid var(--border); border-radius:8px; font-family:'Nunito',sans-serif; font-size:0.95rem; color:var(--ink); outline:none; resize:vertical;"
+            placeholder="Tell us a little about the situation and what you need help with..."></textarea>
+        </div>
+
+        <div style="margin-bottom:2rem;">
+          <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">How Did You Hear About Us?</label>
+          <select name="referral"
+            style="width:100%; padding:0.75rem 1rem; background:var(--cream); border:1px solid var(--border); border-radius:8px; font-family:'Nunito',sans-serif; font-size:0.95rem; color:var(--ink); outline:none;">
+            <option value="">Select one...</option>
+            <option>Word of mouth</option>
+            <option>Google search</option>
+            <option>Social media</option>
+            <option>Legal aid organization</option>
+            <option>Friend or family member</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div style="background:var(--blush-pale); border:1px solid var(--blush); border-radius:8px; padding:1rem; margin-bottom:1.5rem;">
+          <p style="font-size:0.8rem; color:var(--ink-muted); line-height:1.6;">
+            🔒 <strong style="color:var(--choc);">Your information is private.</strong> We never share your details or your loved one's information with any third party. All submissions are confidential.
+          </p>
+        </div>
+
+        <button type="submit"
+          style="width:100%; padding:1rem; background:linear-gradient(135deg, var(--choc-lt), var(--choc)); color:var(--gold-pale); font-family:'Nunito',sans-serif; font-size:1rem; font-weight:700; border:1px solid var(--gold-lt); border-radius:50px; cursor:pointer; letter-spacing:0.02em; transition:all 0.2s;">
+          Submit Registration →
+        </button>
+
+        <div id="formSuccess" style="display:none; margin-top:1.5rem; background:var(--blush-pale); border:1px solid var(--rose-lt); border-radius:8px; padding:1.25rem; text-align:center;">
+          <p style="color:var(--choc); font-weight:600; font-family:'Cormorant Garamond',serif; font-size:1.1rem;">Thank you — we received your registration! 💛</p>
+          <p style="color:var(--ink-muted); font-size:0.9rem; margin-top:0.5rem;">We'll be in touch within 24 hours to get started.</p>
+        </div>
+
+      </form>
+
+      <script>
+        document.getElementById('portalForm').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const form = e.target;
+          const btn = form.querySelector('button[type="submit"]');
+          btn.textContent = 'Sending...';
+          btn.disabled = true;
+          try {
+            const response = await fetch(form.action, {
+              method: 'POST',
+              body: new FormData(form),
+              headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+              form.reset();
+              document.getElementById('formSuccess').style.display = 'block';
+              btn.style.display = 'none';
+            } else {
+              btn.textContent = 'Something went wrong — please email us directly';
+              btn.disabled = false;
+            }
+          } catch(err) {
+            btn.textContent = 'Something went wrong — please email us directly';
+            btn.disabled = false;
+          }
+        });
+      </script>
+
     </div>
 
     <div class="notice-box">
