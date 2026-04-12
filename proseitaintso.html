@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Se It Ain't So — Professional Document Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary:     #2A7F8F;
+    --primary-dk:  #1A5F6D;
+    --primary-lt:  #3D9DAF;
+    --sage:        #6B9E7E;
+    --sage-lt:     #8FBF9F;
+    --amber:       #D4924A;
+    --amber-lt:    #EDB97A;
+    --cream:       #FBF8F3;
+    --warm-white:  #FEFCF9;
+    --soft-blue:   #EEF6F8;
+    --ink:         #1E3640;
+    --ink-soft:    #2E5060;
+    --ink-muted:   #6A8A95;
+    --border:      #D8ECF0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* ── NAV ─────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--primary-dk);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 600;
+    color: var(--amber-lt); letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(250,247,242,0.75); font-size: 0.85rem;
+    text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber-lt); }
+
+  /* ── HERO ────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    background: var(--primary-dk);
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(42,127,143,0.7) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(212,146,74,0.15) 0%, transparent 50%);
+    display: flex; align-items: center;
+    padding: 100px 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '⚖';
+    position: absolute; right: -2rem; bottom: -4rem;
+    font-size: 28rem; opacity: 0.03;
+    color: var(--amber);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 800px; margin: 0 auto;
+    animation: fadeUp 0.9s ease both;
+  }
+  .hero-eyebrow {
+    font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--amber);
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 700; line-height: 1.1;
+    color: var(--cream); margin-bottom: 1.5rem;
+  }
+  h1 em {
+    font-style: italic; color: var(--amber-lt);
+  }
+  .hero-sub {
+    font-size: 1.15rem; color: rgba(250,247,242,0.72);
+    max-width: 560px; margin-bottom: 2.5rem;
+    font-weight: 300; line-height: 1.8;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--amber); color: var(--primary-dk);
+    padding: 0.85rem 2rem; border-radius: 2px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.95rem; font-weight: 600;
+    text-decoration: none; letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--amber-lt); transform: translateY(-1px); }
+  .btn-ghost {
+    border: 1px solid rgba(201,168,76,0.4); color: var(--amber-lt);
+    padding: 0.85rem 2rem; border-radius: 2px;
+    font-size: 0.95rem; text-decoration: none; letter-spacing: 0.04em;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--amber-lt); color: var(--cream); }
+
+  /* ── DISCLAIMER BANNER ───────────────────────────── */
+  .disclaimer-banner {
+    background: rgba(201,168,76,0.08);
+    border-top: 1px solid rgba(201,168,76,0.2);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 0.75rem 2rem; text-align: center;
+  }
+  .disclaimer-banner p {
+    font-size: 0.78rem; color: rgba(250,247,242,0.55);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── SECTIONS ────────────────────────────────────── */
+  section { padding: 6rem 2rem; }
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--amber);
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700; line-height: 1.2;
+    color: var(--primary-dk); margin-bottom: 1.5rem;
+  }
+  h2 em { font-style: italic; color: var(--primary-lt); }
+
+  /* ── STORY ───────────────────────────────────────── */
+  .story-section {
+    background: var(--soft-blue);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .story-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: start;
+  }
+  .story-text p {
+    color: var(--ink-soft); margin-bottom: 1.25rem;
+    font-size: 1.05rem; font-weight: 300;
+  }
+  .story-pull {
+    background: var(--primary-dk);
+    padding: 3rem; border-radius: 2px;
+    position: relative;
+  }
+  .story-pull::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem; line-height: 1;
+    color: var(--amber); opacity: 0.4;
+    position: absolute; top: 1rem; left: 1.5rem;
+  }
+  .story-pull blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-style: italic;
+    color: var(--cream); line-height: 1.7;
+    padding-top: 2rem;
+  }
+  .story-pull cite {
+    display: block; margin-top: 1.5rem;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.85rem; font-style: normal;
+    color: var(--amber); letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── VALUES ──────────────────────────────────────── */
+  .values-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    margin-top: 3rem;
+  }
+  .value-card {
+    border: 1px solid var(--border);
+    padding: 2rem; border-radius: 2px;
+    background: var(--warm-white);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .value-card:hover {
+    border-color: var(--primary-lt);
+    transform: translateY(-3px);
+  }
+  .value-icon {
+    font-size: 1.8rem; margin-bottom: 1rem;
+  }
+  .value-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; color: var(--primary-dk);
+    margin-bottom: 0.75rem;
+  }
+  .value-card p {
+    font-size: 0.95rem; color: var(--ink-muted);
+    font-weight: 300;
+  }
+
+  /* ── SERVICES ────────────────────────────────────── */
+  .services-section { background: var(--primary-dk); }
+  .services-section h2 { color: var(--cream); }
+  .services-section .section-label { color: var(--amber); }
+  .services-section .section-label::before { background: var(--amber); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .service-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 1.75rem; border-radius: 2px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .service-card:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(201,168,76,0.5);
+  }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; color: var(--amber-lt);
+    margin-bottom: 0.5rem;
+  }
+  .service-card p {
+    font-size: 0.9rem; color: rgba(250,247,242,0.65);
+    font-weight: 300; line-height: 1.6;
+  }
+
+  /* ── PRICING ─────────────────────────────────────── */
+  .pricing-section { background: var(--cream); }
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .price-card {
+    border: 1px solid var(--border); padding: 2rem;
+    border-radius: 2px; background: var(--warm-white);
+    position: relative; transition: transform 0.2s, border-color 0.2s;
+  }
+  .price-card:hover { transform: translateY(-4px); border-color: var(--primary-lt); }
+  .price-card.featured {
+    border-color: var(--primary);
+    background: var(--primary-dk);
+  }
+  .price-card.featured h3,
+  .price-card.featured .price-amount,
+  .price-card.featured ul li { color: var(--cream); }
+  .price-card.featured .price-period { color: rgba(250,247,242,0.55); }
+  .featured-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--amber); color: var(--primary-dk);
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 20px;
+  }
+  .price-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; color: var(--primary-dk); margin-bottom: 1rem;
+  }
+  .price-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 700;
+    color: var(--primary-dk); line-height: 1;
+  }
+  .price-period {
+    font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 1.5rem;
+  }
+  .price-card ul { list-style: none; margin-bottom: 1.5rem; }
+  .price-card ul li {
+    font-size: 0.9rem; color: var(--ink-soft);
+    padding: 0.35rem 0; border-bottom: 1px solid var(--border);
+    font-weight: 300;
+  }
+  .price-card ul li::before { content: '✓  '; color: var(--primary); }
+  .price-card.featured ul li { border-bottom-color: rgba(255,255,255,0.1); }
+  .price-card.featured ul li::before { color: var(--amber); }
+  .btn-plan {
+    display: block; text-align: center;
+    padding: 0.75rem; border-radius: 2px;
+    font-size: 0.9rem; text-decoration: none; letter-spacing: 0.04em;
+    transition: all 0.2s; font-family: 'Source Serif 4', serif;
+  }
+  .btn-plan-outline {
+    border: 1px solid var(--primary); color: var(--primary);
+  }
+  .btn-plan-outline:hover { background: var(--primary); color: var(--cream); }
+  .btn-plan-filled { background: var(--amber); color: var(--primary-dk); font-weight: 600; }
+  .btn-plan-filled:hover { background: var(--amber-lt); }
+
+  /* ── TEMPLATES ───────────────────────────────────── */
+  .templates-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .template-card {
+    border: 1px solid var(--border); padding: 1.75rem;
+    border-radius: 2px; background: var(--warm-white);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .template-card:hover { border-color: var(--primary-lt); transform: translateY(-2px); }
+  .template-card.bestseller { border-color: var(--amber); }
+  .template-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--primary-dk); margin: 0.5rem 0;
+  }
+  .template-card h3 {
+    font-size: 1rem; color: var(--primary-dk);
+    font-family: 'Playfair Display', serif; margin-bottom: 0.25rem;
+  }
+  .template-tag {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--amber); background: rgba(201,168,76,0.1);
+    padding: 0.2rem 0.5rem; border-radius: 2px; display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+  .template-card p {
+    font-size: 0.88rem; color: var(--ink-muted);
+    font-weight: 300; margin-bottom: 1.25rem; line-height: 1.6;
+  }
+  .btn-template {
+    font-size: 0.85rem; color: var(--primary);
+    text-decoration: none; letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--primary);
+    padding-bottom: 1px; transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-template:hover { color: var(--primary-lt); border-color: var(--primary-lt); }
+
+  /* ── HOW IT WORKS ────────────────────────────────── */
+  .how-section { background: var(--warm-white); }
+  .steps { display: flex; gap: 0; margin-top: 3rem; position: relative; }
+  .steps::before {
+    content: ''; position: absolute;
+    top: 2rem; left: 2rem; right: 2rem; height: 1px;
+    background: var(--border); z-index: 0;
+  }
+  .step {
+    flex: 1; text-align: center; padding: 0 1.5rem; position: relative;
+  }
+  .step-num {
+    width: 4rem; height: 4rem; border-radius: 50%;
+    background: var(--primary-dk); color: var(--amber);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.25rem; position: relative; z-index: 1;
+  }
+  .step h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--primary-dk); margin-bottom: 0.5rem;
+  }
+  .step p { font-size: 0.88rem; color: var(--ink-muted); font-weight: 300; }
+
+  /* ── ACCESS ──────────────────────────────────────── */
+  .access-section { background: var(--cream); border-top: 1px solid var(--border); }
+  .access-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .access-card {
+    text-align: center; padding: 2rem 1.5rem;
+    border: 1px solid var(--border); border-radius: 2px;
+    background: var(--warm-white);
+  }
+  .access-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .access-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--primary-dk); margin-bottom: 0.5rem;
+  }
+  .access-card p { font-size: 0.88rem; color: var(--ink-muted); font-weight: 300; }
+  .coming-soon {
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--amber); background: rgba(201,168,76,0.1);
+    padding: 0.2rem 0.5rem; border-radius: 2px;
+    display: inline-block; margin-top: 0.5rem;
+  }
+
+  /* ── CONTACT ─────────────────────────────────────── */
+  .contact-section { background: var(--primary-dk); }
+  .contact-section h2 { color: var(--cream); }
+  .contact-section .section-label { color: var(--amber); }
+  .contact-section .section-label::before { background: var(--amber); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    margin-top: 3rem;
+  }
+  .contact-info p {
+    color: rgba(250,247,242,0.7); font-size: 1rem;
+    font-weight: 300; margin-bottom: 2rem; line-height: 1.8;
+  }
+  .contact-detail {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .contact-detail-icon {
+    width: 2.5rem; height: 2.5rem; border-radius: 50%;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-detail span {
+    color: rgba(250,247,242,0.75); font-size: 0.95rem;
+  }
+  .contact-detail a {
+    color: var(--amber-lt); text-decoration: none;
+  }
+  .contact-detail a:hover { color: var(--cream); }
+  .contact-form-area {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 2.5rem; border-radius: 2px;
+  }
+  .contact-form-area h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--cream); margin-bottom: 1.5rem;
+  }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label {
+    display: block; font-size: 0.8rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 0.4rem;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%; padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 2px; color: var(--cream);
+    font-family: 'Source Serif 4', serif; font-size: 0.95rem;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    outline: none; border-color: var(--amber);
+  }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-group select option { background: var(--primary-dk); }
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  footer {
+    background: #0F2530;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+  .footer-inner {
+    max-width: 1000px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: start;
+    gap: 2rem; flex-wrap: wrap;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: var(--amber-lt); margin-bottom: 0.5rem;
+  }
+  .footer-tagline {
+    font-size: 0.85rem; color: rgba(250,247,242,0.4);
+    font-weight: 300; max-width: 280px;
+  }
+  .footer-disclaimer {
+    font-size: 0.75rem; color: rgba(250,247,242,0.35);
+    max-width: 480px; line-height: 1.6;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 1.5rem; margin-top: 2rem;
+    width: 100%;
+  }
+  .footer-copy {
+    font-size: 0.75rem; color: rgba(250,247,242,0.25);
+    margin-top: 0.75rem;
+  }
+
+  /* ── ANIMATIONS ──────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ──────────────────────────────────── */
+  @media (max-width: 768px) {
+    .story-grid, .contact-grid { grid-template-columns: 1fr; }
+    .values-grid, .pricing-grid, .templates-grid,
+    .access-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .steps { flex-direction: column; }
+    .steps::before { display: none; }
+    .nav-links { display: none; }
+    h1 { font-size: 2.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-brand">Pro Se It Ain't So</a>
+  <ul class="nav-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="family-portal.html">Family Portal</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Document Services for the Self-Represented</p>
+    <h1>You deserve to be<br><em>heard clearly.</em></h1>
+    <p class="hero-sub">
+      Professional document typing, formatting, and organization for justice-impacted individuals 
+      and their families. We've been where you are — and we're here to help.
+    </p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">See Our Services</a>
+      <a href="#story" class="btn-ghost">Our Story</a>
+    </div>
+    <div class="disclaimer-banner" style="margin-top:2.5rem; background:rgba(0,0,0,0.2); border-radius:2px; padding:0.75rem 1rem;">
+      <p>We are not attorneys and do not provide legal advice. We provide document typing, formatting, and clerical services only.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story-section" id="story">
+  <div class="section-inner">
+    <p class="section-label">Founded in Experience</p>
+    <h2>We've been where <em>you are.</em></h2>
+    <div class="story-grid">
+      <div class="story-text">
+        <p>
+          My journey started in a place I never imagined — behind bars. As a first-time offender, 
+          I spent years navigating a complex and often unforgiving legal system, hiring five 
+          different attorneys, and ultimately fighting for my own freedom.
+        </p>
+        <p>
+          I witnessed countless people in the law library fighting hopeless battles, limited by 
+          education, resources, and the daunting nature of the process itself. Many gave up. 
+          This experience became the foundation of Pro Se It Ain't So.
+        </p>
+        <p>
+          I was fortunate to have worked as an executive legal assistant and had always taken an 
+          interest in the law. But for the average incarcerated individual, the challenges are 
+          staggering. No one should give up simply because they lack access to professional 
+          document services.
+        </p>
+        <p style="color: var(--primary-dk); font-weight: 600;">
+          — Makeda Davis, Founder
+        </p>
+      </div>
+      <div class="story-pull">
+        <blockquote>
+          "The goal is for documents from self-represented individuals to look professional 
+          and well-organized — hence the name Pro Se It Ain't So."
+          <cite>Makeda Davis &nbsp;·&nbsp; Founder, Speaker, Advocate</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="values-grid" style="margin-top:4rem;">
+      <div class="value-card">
+        <div class="value-icon">❤️</div>
+        <h3>Love & Compassion</h3>
+        <p>We understand the challenges you face because we've been there. Every client receives empathy, respect, and genuine care.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🕊️</div>
+        <h3>Access & Dignity</h3>
+        <p>Everyone deserves professional document services, regardless of their resources. We're committed to making quality services accessible.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">💪</div>
+        <h3>Perseverance & Hope</h3>
+        <p>We know the journey is hard. We're here to support you with professional document services every step of the way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="section-inner">
+    <p class="section-label">What We Do</p>
+    <h2 style="color:var(--cream);">Document services that <em style="color:var(--amber-lt);">speak for you.</em></h2>
+    <p style="color:rgba(250,247,242,0.65); max-width:560px; font-weight:300; margin-bottom:0;">
+      We type, format, and organize your documents so they look professional and court-ready. 
+      You provide the content and direction — we handle the presentation.
+    </p>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>📋 Habeas Corpus Petition Typing</h3>
+        <p>Professional typing and formatting of habeas corpus petitions based on your exact written specifications.</p>
+      </div>
+      <div class="service-card">
+        <h3>⚖️ Post-Conviction Motion Formatting</h3>
+        <p>Typing and formatting for 440 motions, 2255 motions, and other post-conviction documents you specify.</p>
+      </div>
+      <div class="service-card">
+        <h3>📑 Appeals Document Typing</h3>
+        <p>Professional typing for notices of appeal, briefs, and related documents using your content and instructions.</p>
+      </div>
+      <div class="service-card">
+        <h3>🎯 Parole & Clemency Documents</h3>
+        <p>Formatting and typing services for parole packets, clemency applications, and related materials you author.</p>
+      </div>
+      <div class="service-card">
+        <h3>🔍 Case Law Location Services</h3>
+        <p>Locating publicly available case law, statutes, and court rules. Factual information only — not legal interpretation.</p>
+      </div>
+      <div class="service-card">
+        <h3>💬 Family Coordination Support</h3>
+        <p>Communication assistance to help family members understand procedural information and coordinate document submission.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-inner">
+    <p class="section-label">Monthly Plans</p>
+    <h2>Accessible pricing, <em>professional results.</em></h2>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Basic</h3>
+        <div class="price-amount">$9.99</div>
+        <div class="price-period">per month</div>
+        <ul>
+          <li>1 document per month</li>
+          <li>Up to 3 pages</li>
+          <li>Grammar & spelling</li>
+          <li>Basic formatting</li>
+          <li>5–7 day turnaround</li>
+        </ul>
+        <a href="mailto:info@proseitaintso.com?subject=Basic Plan Inquiry" class="btn-plan btn-plan-outline">Get Started</a>
+      </div>
+      <div class="price-card featured">
+        <span class="featured-badge">Most Popular</span>
+        <h3>Standard</h3>
+        <div class="price-amount">$19.99</div>
+        <div class="price-period">per month</div>
+        <ul>
+          <li>3 documents per month</li>
+          <li>Up to 5 pages</li>
+          <li>Grammar & formatting</li>
+          <li>Professional layout</li>
+          <li>3–5 day turnaround</li>
+        </ul>
+        <a href="mailto:info@proseitaintso.com?subject=Standard Plan Inquiry" class="btn-plan btn-plan-filled">Get Started</a>
+      </div>
+      <div class="price-card">
+        <h3>Pro</h3>
+        <div class="price-amount">$39.99</div>
+        <div class="price-period">per month</div>
+        <ul>
+          <li>6 documents per month</li>
+          <li>Up to 10 pages</li>
+          <li>Comprehensive formatting</li>
+          <li>Priority turnaround</li>
+          <li>1–3 day turnaround</li>
+        </ul>
+        <a href="mailto:info@proseitaintso.com?subject=Pro Plan Inquiry" class="btn-plan btn-plan-outline">Get Started</a>
+      </div>
+    </div>
+
+    <!-- FAMILY PLAN -->
+    <div style="margin-top:1.5rem; border:1px solid var(--border); padding:2rem; border-radius:2px; background:var(--warm-white); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem;">
+      <div>
+        <div style="font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--primary); margin-bottom:0.4rem;">For Families</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--primary-dk); margin-bottom:0.25rem;">Family Support Plan — $24.99/mo</h3>
+        <p style="font-size:0.9rem; color:var(--ink-muted); font-weight:300;">Submit documents on behalf of your incarcerated loved one. Includes family coordination support and plain-language explanations.</p>
+      </div>
+      <a href="mailto:info@proseitaintso.com?subject=Family Plan Inquiry" class="btn-primary" style="white-space:nowrap;">Learn More</a>
+    </div>
+
+    <!-- TEMPLATES -->
+    <div style="margin-top:4rem;">
+      <p class="section-label">One-Time Purchases</p>
+      <h2>Document <em>template packages.</em></h2>
+      <div class="templates-grid">
+        <div class="template-card bestseller">
+          <span class="template-tag">Best Seller</span>
+          <h3>CPL 440 Motion Template</h3>
+          <div class="template-price">$59</div>
+          <p>Complete NY CPL §440.10 blank template with 25-page procedural guide, case law examples, and court rules reference.</p>
+          <a href="https://square.link/u/PDDdK2m0" class="btn-template">Buy Now — Instant Download →</a>
+        </div>
+        <div class="template-card">
+          <span class="template-tag">Federal</span>
+          <h3>Habeas Corpus Template Kit</h3>
+          <div class="template-price">$79</div>
+          <p>Fillable federal habeas corpus template with 30-page procedural guide, formatting reference, and filing checklist.</p>
+          <a href="mailto:info@proseitaintso.com?subject=Habeas Corpus Template Kit" class="btn-template">Contact to Order →</a>
+        </div>
+        <div class="template-card">
+          <span class="template-tag">Appeals</span>
+          <h3>Appeals Brief Template</h3>
+          <div class="template-price">$49</div>
+          <p>Court-approved appellate brief template with structure guide, citation formatting, and formatting checklist.</p>
+          <a href="mailto:info@proseitaintso.com?subject=Appeals Brief Template" class="btn-template">Contact to Order →</a>
+        </div>
+        <div class="template-card">
+          <span class="template-tag">Parole</span>
+          <h3>Parole Board Document Package</h3>
+          <div class="template-price">$69</div>
+          <p>Personal statement template, character letter guide, release plan template, and parole hearing prep materials.</p>
+          <a href="mailto:info@proseitaintso.com?subject=Parole Board Templates" class="btn-template">Contact to Order →</a>
+        </div>
+        <div class="template-card">
+          <span class="template-tag">Family Law</span>
+          <h3>Divorce Document Package</h3>
+          <div class="template-price">$89</div>
+          <p>Complete NY divorce templates including summons, affidavits, financial disclosure forms, and filing procedures.</p>
+          <a href="https://square.link/u/60Bq3xxD" class="btn-template">Buy Now →</a>
+        </div>
+        <div class="template-card" style="background:var(--cream); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; min-height:180px;">
+          <div style="font-size:2rem; margin-bottom:0.75rem;">👕</div>
+          <h3 style="margin-bottom:0.5rem;">Support Our Mission</h3>
+          <p style="margin-bottom:1rem;">100% of t-shirt profits fund free services for those who can't afford our fees.</p>
+          <a href="https://square.link/u/pI6QPhMb" class="btn-template">Order a T-Shirt — $25 →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="section-inner">
+    <p class="section-label">The Process</p>
+    <h2>Simple steps, <em>professional results.</em></h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Choose Your Service</h3>
+        <p>Select the plan or template package that fits your needs and budget.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Submit Your Documents</h3>
+        <p>Send via mail, family portal, or contact us through Securus messaging.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>We Format & Return</h3>
+        <p>Receive professionally formatted documents ready for filing within days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="access-section">
+  <div class="section-inner">
+    <p class="section-label">How to Reach Us</p>
+    <h2>Multiple ways <em>to connect.</em></h2>
+    <div class="access-grid">
+      <div class="access-card">
+        <div class="access-icon">✉️</div>
+        <h3>Mail-In Service</h3>
+        <p>Send your documents and instructions by mail. We return formatted documents promptly.</p>
+      </div>
+      <div class="access-card">
+        <div class="access-icon">👨‍👩‍👧</div>
+        <h3>Family Portal</h3>
+        <p>Family members can submit documents and coordinate services on your behalf through our online portal.</p>
+        <a href="family-portal.html" style="display:inline-block; margin-top:0.75rem; font-size:0.85rem; color:var(--primary); text-decoration:none; border-bottom:1px solid var(--primary);">Visit Family Portal →</a>
+      </div>
+      <div class="access-card">
+        <div class="access-icon">📞</div>
+        <h3>Phone & Tablet Services</h3>
+        <p>Contact us through Securus messaging or reach out by phone.</p>
+        <span class="coming-soon">Phone Line Coming Soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <p class="section-label">Get In Touch</p>
+    <h2>Ready to get <em style="color:var(--amber-lt);">started?</em></h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>
+          We're here to help you present your case with professionalism and dignity. 
+          Reach out with any questions about our services or to get started today.
+        </p>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">✉️</div>
+          <span><a href="mailto:info@proseitaintso.com">info@proseitaintso.com</a></span>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">👨‍👩‍👧</div>
+          <span><a href="family-portal.html">Family Portal →</a></span>
+        </div>
+        <div style="margin-top:2rem; padding:1.5rem; background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.2); border-radius:2px;">
+          <p style="font-size:0.85rem; color:rgba(250,247,242,0.6); margin:0; line-height:1.7;">
+            <strong style="color:var(--amber);">Note:</strong> We are not attorneys and do not provide legal advice. 
+            All services are document typing, formatting, and clerical support only. 
+            Please consult a licensed attorney for legal guidance on your case.
+          </p>
+        </div>
+      </div>
+      <div class="contact-form-area">
+        <h3>Send Us a Message</h3>
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Full name">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label>Service Interested In</label>
+          <select>
+            <option value="">Select a service...</option>
+            <option>Basic Monthly Plan</option>
+            <option>Standard Monthly Plan</option>
+            <option>Pro Monthly Plan</option>
+            <option>Family Support Plan</option>
+            <option>CPL 440 Motion Template</option>
+            <option>Habeas Corpus Template Kit</option>
+            <option>Appeals Brief Template</option>
+            <option>Parole Board Documents</option>
+            <option>Other / General Inquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell us how we can help..."></textarea>
+        </div>
+        <a href="mailto:info@proseitaintso.com" class="btn-primary" style="display:block; text-align:center; width:100%;">Send Message</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Pro Se It Ain't So™</div>
+      <p class="footer-tagline">Professional document services for justice-impacted individuals. Built by someone who has been there.</p>
+    </div>
+    <div>
+      <p style="font-size:0.8rem; color:rgba(250,247,242,0.4); margin-bottom:0.5rem;">Quick Links</p>
+      <div style="display:flex; flex-direction:column; gap:0.4rem;">
+        <a href="#story" style="font-size:0.85rem; color:rgba(250,247,242,0.5); text-decoration:none;">Our Story</a>
+        <a href="#services" style="font-size:0.85rem; color:rgba(250,247,242,0.5); text-decoration:none;">Services</a>
+        <a href="#pricing" style="font-size:0.85rem; color:rgba(250,247,242,0.5); text-decoration:none;">Pricing</a>
+        <a href="family-portal.html" style="font-size:0.85rem; color:rgba(250,247,242,0.5); text-decoration:none;">Family Portal</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-inner" style="padding-top:0;">
+    <p class="footer-disclaimer">
+      Pro Se It Ain't So provides document typing, formatting, proofreading, and clerical services ONLY. 
+      We are NOT attorneys and do NOT provide legal advice, legal representation, or legal opinions of any kind. 
+      All documents are typed and formatted exactly as YOU specify. You are responsible for all legal decisions and content. 
+      We strongly recommend consulting with a licensed attorney for legal advice about your case.
+    </p>
+    <p class="footer-copy">© 2024 Pro Se It Ain't So. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
