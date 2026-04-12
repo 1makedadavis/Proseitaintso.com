@@ -1,9 +1,1 @@
-[build]
-  edge_functions = "netlify/edge-functions"
 
-[functions]
-  directory = "netlify/functions"
-
-[[edge_functions]]
-  path = "/.netlify/functions/sai"
-  function = "sai"
