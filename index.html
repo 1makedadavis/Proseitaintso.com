@@ -1111,7 +1111,7 @@ async function sendMessage() {
     const response = await fetch('/.netlify/functions/sai', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'text/plain'
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
