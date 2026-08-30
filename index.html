@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pro Se It Ain't So — With SAI, Your Legal Guide</title>
+<meta name="description" content="Use SAI for compassionate, plain-English legal information and case organization, with optional paid document formatting support when you need a human hand.">
+<meta property="og:title" content="Pro Se It Ain't So — Meet SAI">
+<meta property="og:description" content="Start with free, plain-English self-service support. Add paid human document formatting only when you need it.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://proseitaintso.com/">
+<meta name="twitter:card" content="summary">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -704,7 +710,7 @@
         </div>
       </div>
 
-      <div class="sai-messages" id="saiMessages">
+      <div class="sai-messages" id="saiMessages" aria-live="polite">
         <!-- Welcome message -->
         <div class="msg sai">
           <div class="msg-avatar sai-av">☀️</div>
@@ -723,10 +729,10 @@
 
       <div class="sai-suggestions" id="saiSuggestions">
         <button class="suggestion-chip" onclick="sendSuggestion(this)">What is a 440 motion?</button>
-        <button class="suggestion-chip" onclick="sendSuggestion(this)">What are my next steps after a denial?</button>
-        <button class="suggestion-chip" onclick="sendSuggestion(this)">Can you review my motion language?</button>
-        <button class="suggestion-chip" onclick="sendSuggestion(this)">Is habeas corpus still valid for my case?</button>
-        <button class="suggestion-chip" onclick="sendSuggestion(this)">What is an error coram nobis?</button>
+        <button class="suggestion-chip" onclick="sendSuggestion(this)">Help me organize my case timeline</button>
+        <button class="suggestion-chip" onclick="sendSuggestion(this)">Create a document checklist with me</button>
+        <button class="suggestion-chip" onclick="sendSuggestion(this)">Explain this legal language in plain English</button>
+        <button class="suggestion-chip" onclick="sendSuggestion(this)">What information should I gather before seeking help?</button>
       </div>
 
       <div class="sai-input-area">
@@ -738,7 +744,7 @@
           onkeydown="handleKey(event)"
           oninput="autoResize(this)"
         ></textarea>
-        <button class="sai-send" id="saiSendBtn" onclick="sendMessage()">➤</button>
+        <button class="sai-send" id="saiSendBtn" onclick="sendMessage()" aria-label="Send message to SAI">➤</button>
       </div>
     </div>
   </div>
@@ -847,12 +853,12 @@
         <p>Formatting and typing services for parole packets, clemency applications, and related materials.</p>
       </div>
       <div class="service-card">
-        <h3>🔍 Case Law Location Services</h3>
-        <p>Locating publicly available case law, statutes, and court rules for your reference.</p>
+        <h3>🔍 Research Organization</h3>
+        <p>Use SAI to build a checklist of cases, statutes, court rules, and deadlines that still need verification through official current sources.</p>
       </div>
       <div class="service-card">
         <h3>💬 Family Coordination Support</h3>
-        <p>Communication assistance to help families coordinate document submission from outside.</p>
+        <p>Paid administrative assistance to help families coordinate document submission from outside, when availability permits.</p>
       </div>
     </div>
   </div>
@@ -861,56 +867,60 @@
 <!-- PRICING -->
 <section class="pricing-section" id="pricing">
   <div class="pricing-inner">
-    <p class="section-label">Monthly Plans</p>
-    <h2>Accessible pricing, <em>professional results.</em></h2>
+    <p class="section-label">Choose Your Level of Support</p>
+    <h2>Start yourself. <em>Bring us in when needed.</em></h2>
+    <p style="color:var(--ink-soft); max-width:680px; font-size:0.95rem; line-height:1.8;">
+      Use SAI anytime for general educational information and organization. Paid human support is optional,
+      priced separately, and limited to document typing, formatting, proofreading, and administrative coordination.
+    </p>
     <div class="pricing-grid">
       <div class="price-card">
-        <h3>Basic</h3>
-        <div class="price-amount">$9.99</div>
-        <div class="price-period">per month</div>
+        <h3>SAI Self-Service</h3>
+        <div class="price-amount">Free</div>
+        <div class="price-period">available online anytime</div>
         <ul>
-          <li>1 document per month</li>
-          <li>Up to 3 pages</li>
-          <li>Grammar & spelling</li>
-          <li>Basic formatting</li>
-          <li>5–7 day turnaround</li>
+          <li>Plain-English explanations</li>
+          <li>Organize facts and timelines</li>
+          <li>Create a document checklist</li>
+          <li>Identify items requiring verification</li>
+          <li>No account or appointment needed</li>
         </ul>
-        <a href="mailto:info@proseitaintso.com?subject=Basic Plan" class="btn-plan btn-plan-outline">Get Started</a>
+        <a href="#sai" class="btn-plan btn-plan-outline">Ask SAI Now</a>
       </div>
       <div class="price-card featured">
-        <span class="featured-badge">Most Popular</span>
-        <h3>Standard</h3>
-        <div class="price-amount">$19.99</div>
-        <div class="price-period">per month</div>
+        <span class="featured-badge">Human Support</span>
+        <h3>Document Polish</h3>
+        <div class="price-amount">$49</div>
+        <div class="price-period">starting price · one-time</div>
         <ul>
-          <li>3 documents per month</li>
-          <li>Up to 5 pages</li>
-          <li>Grammar & formatting</li>
-          <li>Professional layout</li>
-          <li>3–5 day turnaround</li>
+          <li>Up to 5 submitted pages</li>
+          <li>Grammar and spelling cleanup</li>
+          <li>Consistent professional formatting</li>
+          <li>You provide the legal content</li>
+          <li>Timing confirmed after review</li>
         </ul>
-        <a href="mailto:info@proseitaintso.com?subject=Standard Plan" class="btn-plan btn-plan-filled">Get Started</a>
+        <a href="family-portal.html" class="btn-plan btn-plan-filled">Request Paid Support</a>
       </div>
       <div class="price-card">
-        <h3>Pro</h3>
-        <div class="price-amount">$39.99</div>
-        <div class="price-period">per month</div>
+        <h3>Full Formatting</h3>
+        <div class="price-amount">$99</div>
+        <div class="price-period">starting price · one-time</div>
         <ul>
-          <li>6 documents per month</li>
-          <li>Up to 10 pages</li>
-          <li>Comprehensive formatting</li>
-          <li>Priority turnaround</li>
-          <li>1–3 day turnaround</li>
+          <li>Up to 10 submitted pages</li>
+          <li>Document structure and layout</li>
+          <li>Headers, numbering and contents</li>
+          <li>Longer files quoted separately</li>
+          <li>Priority service when available</li>
         </ul>
-        <a href="mailto:info@proseitaintso.com?subject=Pro Plan" class="btn-plan btn-plan-outline">Get Started</a>
+        <a href="family-portal.html" class="btn-plan btn-plan-outline">Request Paid Support</a>
       </div>
     </div>
 
     <div style="margin-top:1.5rem; border:1px solid var(--border); padding:2rem; border-radius:16px; background:var(--warm-white); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem;">
       <div>
         <div style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--choc-mid); font-weight:700; margin-bottom:0.4rem;">For Families</div>
-        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--choc-dk); margin-bottom:0.25rem;">Family Support Plan — $24.99/mo</h3>
-        <p style="font-size:0.9rem; color:var(--ink-muted);">Submit documents on behalf of your loved one. Includes family coordination support.</p>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--choc-dk); margin-bottom:0.25rem;">Family Coordination — starting at $79</h3>
+        <p style="font-size:0.9rem; color:var(--ink-muted);">One-time intake and administrative coordination for a loved one's document request. No subscription required.</p>
       </div>
       <a href="family-portal.html" class="btn-primary">Family Portal →</a>
     </div>
@@ -930,18 +940,18 @@
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <h3>Choose Your Service</h3>
-        <p>Select the document plan that fits your needs and budget.</p>
+        <h3>Continue or Upgrade</h3>
+        <p>Keep working independently or request optional paid document support.</p>
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <h3>Submit Documents</h3>
-        <p>Send via mail, family portal, or Securus messaging.</p>
+        <h3>Request Human Support</h3>
+        <p>Describe the document and page count. We confirm scope, price, and availability before work begins.</p>
       </div>
       <div class="step">
         <div class="step-num">4</div>
-        <h3>Receive & File</h3>
-        <p>Get professionally formatted documents returned and ready to file.</p>
+        <h3>Review the Finished File</h3>
+        <p>Receive professionally formatted documents for your review and filing decisions.</p>
       </div>
     </div>
   </div>
@@ -956,7 +966,7 @@
       <div class="access-card">
         <div class="access-icon">✉️</div>
         <h3>Mail-In Service</h3>
-        <p>Send your documents and instructions by mail. We return formatted documents promptly.</p>
+        <p>Mail-in service may be available after scope, price, and timing are confirmed.</p>
       </div>
       <div class="access-card">
         <div class="access-icon">👨‍👩‍👧</div>
@@ -994,9 +1004,9 @@
   </div>
   <div class="footer-inner" style="padding-top:0;">
     <p class="footer-disclaimer">
-      Pro Se It Ain't So provides document typing, formatting, and clerical services ONLY. We are NOT attorneys and do NOT provide legal advice, legal representation, or legal opinions. SAI is an AI assistant for educational purposes only and does not constitute legal advice. Always consult a licensed attorney for legal guidance specific to your case. All documents are typed and formatted exactly as YOU specify. You are responsible for all legal decisions and content.
+      Pro Se It Ain't So provides document typing, proofreading, formatting, and clerical services ONLY. We are NOT attorneys and do NOT provide legal advice, legal representation, or legal opinions. SAI is an AI assistant for educational purposes only and does not constitute legal advice. Always consult a licensed attorney for legal guidance specific to your case. You supply and approve all legal content and remain responsible for legal decisions, accuracy, verification, and filing.
     </p>
-    <p class="footer-copy">© 2024 Pro Se It Ain't So. All rights reserved.</p>
+    <p class="footer-copy">© 2026 Pro Se It Ain't So. All rights reserved.</p>
   </div>
 </footer>
 
@@ -1061,7 +1071,7 @@ function addTypingIndicator() {
 
   const bubble = document.createElement('div');
   bubble.className = 'msg-bubble';
-  bubble.innerHTML = '<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+  bubble.innerHTML = '<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div><span id="saiThinkingText" style="display:block; margin-top:0.45rem; font-size:0.78rem; color:var(--ink-muted);">Let me sort through that carefully…</span>';
 
   div.appendChild(avatar);
   div.appendChild(bubble);
@@ -1089,6 +1099,10 @@ async function sendMessage() {
   conversationHistory.push({ role: 'user', content: text });
 
   addTypingIndicator();
+  const slowMessage = setTimeout(() => {
+    const thinkingText = document.getElementById('saiThinkingText');
+    if (thinkingText) thinkingText.textContent = 'Still with you—legal language likes to take the scenic route.';
+  }, 6000);
 
   try {
     const response = await fetch('/.netlify/functions/sai', {
@@ -1116,6 +1130,7 @@ async function sendMessage() {
     removeTypingIndicator();
     addMessage('assistant', "I'm having trouble connecting right now. Please try again in a moment, or reach out to us directly at info@proseitaintso.com 💛");
   }
+  clearTimeout(slowMessage);
 
   isLoading = false;
   document.getElementById('saiSendBtn').disabled = false;
