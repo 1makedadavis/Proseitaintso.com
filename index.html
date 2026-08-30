@@ -687,7 +687,7 @@
     <h2>Simple. Accessible. <em>Intelligent.</em></h2>
     <p style="color:var(--ink-soft); max-width:560px; margin-bottom:0; font-size:1rem; line-height:1.8;">
       SAI breaks down case law, explains your next steps, reviews your submissions, 
-      and checks if the law you're citing is still current — all in plain language 
+      and flags legal information that needs current official verification — all in plain language
       anyone can understand.
     </p>
 
@@ -698,9 +698,9 @@
           <h3>SAI — It Ain't So</h3>
           <p>Simple · Accessible · Intelligent Legal Guide</p>
         </div>
-        <div class="sai-status">
-          <div class="sai-status-dot"></div>
-          Ready to help
+        <div class="sai-status" id="saiStatus">
+          <div class="sai-status-dot" id="saiStatusDot"></div>
+          <span id="saiStatusText">Checking availability…</span>
         </div>
       </div>
 
@@ -715,7 +715,7 @@
             system less overwhelming, one question at a time.<br><br>
             I can help you <strong>understand case law</strong>, figure out 
             <strong>your next steps</strong>, review what's unclear in your documents, 
-            suggest improvements, and check if the laws you're working with are still current.<br><br>
+            suggest improvements, and identify laws or citations that need to be verified using current official sources.<br><br>
             What's on your mind today? 💛
           </div>
         </div>
@@ -767,13 +767,13 @@
       </div>
       <div class="feature-card">
         <div class="feature-icon">⚖️</div>
-        <h3>Legal Currency Check</h3>
-        <p>SAI flags when a case or statute has been updated, overturned, or superseded so you don't build on outdated law.</p>
+        <h3>Legal Verification Flags</h3>
+        <p>SAI identifies authorities and deadlines that should be checked using current official court, legislative, or legal-research sources.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🔍</div>
         <h3>Source Citations</h3>
-        <p>Every answer comes with references to real statutes, court rules, and case law so you can verify and build on it.</p>
+        <p>When SAI identifies a statute, court rule, or case, it helps you create a source-verification checklist and clearly marks what still needs confirmation.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">💬</div>
@@ -1001,29 +1001,6 @@
 </footer>
 
 <script>
-const SYSTEM_PROMPT = `You are SAI — Simple, Accessible, Intelligent — the AI legal guide for Pro Se It Ain't So, a document services company founded by Makeda Davis, a formerly incarcerated person who fought her own legal battles and now helps others navigate the system.
-
-Your role is to help justice-impacted individuals and their families understand the legal system. You always:
-
-1. START every first response with a warm word of encouragement — acknowledge the courage it takes to be here
-2. Use PLAIN LANGUAGE — explain every legal term you use, as if talking to someone with no legal background
-3. Break down case law clearly — what the case was about, what was decided, and why it matters
-4. Explain next steps in numbered, ordered lists
-5. Review submissions for clarity, completeness, and strength
-6. Flag when laws or cases may be outdated or have been superseded
-7. Always cite your sources (statutes, case names, court rules) so people can verify
-8. End EVERY response with: "⚖️ Remember: I'm SAI, an AI guide for educational purposes. I'm not a lawyer and this isn't legal advice. For advice specific to your case, please consult a licensed attorney or legal aid organization."
-
-You are warm, patient, encouraging, and never condescending. You speak to people as capable adults who simply need information made accessible. You never make people feel stupid for not knowing legal terms.
-
-If someone shares a document or motion for review, give specific, actionable feedback on:
-- What's unclear or could be stronger
-- What may be missing
-- Language suggestions
-- Whether the legal basis cited is current
-
-You have knowledge of federal and New York State law, criminal procedure, post-conviction remedies (440 motions, habeas corpus, coram nobis, CPL appeals), parole procedures, and civil rights law.`;
-
 let conversationHistory = [];
 let isLoading = false;
 
@@ -1057,7 +1034,13 @@ function addMessage(role, content) {
 
   const bubble = document.createElement('div');
   bubble.className = 'msg-bubble';
-  bubble.innerHTML = content.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  const safe = content
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+  bubble.innerHTML = safe.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
   div.appendChild(avatar);
   div.appendChild(bubble);
@@ -1111,20 +1094,21 @@ async function sendMessage() {
     const response = await fetch('/.netlify/functions/sai', {
       method: 'POST',
       headers: {
-        'Content-Type': 'text/plain'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: SYSTEM_PROMPT,
-        messages: conversationHistory
+        messages: conversationHistory.slice(-10)
       })
     });
 
     const data = await response.json();
     removeTypingIndicator();
 
-    const reply = data.content?.[0]?.text || "I'm having trouble connecting right now. Please try again in a moment.";
+    if (!response.ok) {
+      throw new Error(data.error || 'SAI request failed');
+    }
+
+    const reply = data.reply || "I'm having trouble connecting right now. Please try again in a moment.";
     conversationHistory.push({ role: 'assistant', content: reply });
     addMessage('assistant', reply);
 
@@ -1136,6 +1120,22 @@ async function sendMessage() {
   isLoading = false;
   document.getElementById('saiSendBtn').disabled = false;
 }
+
+async function checkSaiAvailability() {
+  const text = document.getElementById('saiStatusText');
+  const dot = document.getElementById('saiStatusDot');
+  try {
+    const response = await fetch('/.netlify/functions/sai?health=1', { cache: 'no-store' });
+    if (!response.ok) throw new Error('Unavailable');
+    text.textContent = 'Ready to help';
+    dot.style.background = '#57c785';
+  } catch (error) {
+    text.textContent = 'Temporarily unavailable';
+    dot.style.background = '#d97b62';
+  }
+}
+
+checkSaiAvailability();
 </script>
 
 </body>
