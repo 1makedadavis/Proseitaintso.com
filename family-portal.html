@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Family Portal — Pro Se It Ain't So</title>
+<meta name="description" content="Request optional paid document formatting and administrative coordination for an incarcerated loved one. Scope, pricing, and availability are confirmed before work begins.">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -305,6 +306,8 @@
     .steps::before { display: none; }
     .nav-links { display: none; }
     h1 { font-size: 2.2rem; }
+    .google-form-wrap { padding: 1.25rem !important; }
+    .google-form-wrap form > div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
   }
 </style>
 </head>
@@ -329,9 +332,8 @@
     <span class="hero-eyebrow">👨‍👩‍👧 For Families & Loved Ones</span>
     <h1>You're not alone<br><em>in this.</em></h1>
     <p class="hero-sub">
-      Submit documents, choose a plan, and get professional formatting assistance
-      on behalf of your incarcerated loved one. We understand what your family is going through —
-      because we've been there too.
+      Start with SAI for free, or request optional paid document formatting and administrative coordination
+      for an incarcerated loved one. We understand what your family is carrying—because we've been there too.
     </p>
   </div>
 </section>
@@ -345,33 +347,33 @@
       <div class="info-card">
         <h3>💡 Why Use the Family Portal?</h3>
         <ul>
-          <li>Submit documents on their behalf</li>
-          <li>Coordinate care from outside the facility</li>
+          <li>Request document support on their behalf</li>
+          <li>Coordinate information from outside the facility</li>
           <li>Receive plain-language updates</li>
           <li>Help with document preparation</li>
           <li>Support their legal journey confidently</li>
         </ul>
       </div>
       <div class="info-card">
-        <h3>📋 What You Can Submit</h3>
+        <h3>📋 Documents We May Support</h3>
         <ul>
           <li>Motions and petitions</li>
           <li>Court correspondence</li>
           <li>Parole board materials</li>
           <li>Habeas corpus petitions</li>
           <li>Research requests</li>
-          <li>Any case-related documents</li>
+          <li>Other documents reviewed for scope</li>
         </ul>
       </div>
       <div class="info-card">
-        <h3>💰 Family Support Plan</h3>
+        <h3>💰 Optional Human Support</h3>
         <ul>
-          <li><span class="price-highlight">$24.99/mo</span></li>
-          <li>3 documents per month</li>
-          <li>Up to 5 pages per submission</li>
-          <li>Family coordination support</li>
-          <li>Plain-language explanations</li>
-          <li>3–5 day turnaround</li>
+          <li><span class="price-highlight">From $49</span></li>
+          <li>One-time service — no subscription</li>
+          <li>Document Polish starts at $49</li>
+          <li>Full Formatting starts at $99</li>
+          <li>Family Coordination starts at $79</li>
+          <li>Scope and timing confirmed first</li>
         </ul>
       </div>
     </div>
@@ -391,18 +393,18 @@
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <h3>Choose Your Plan</h3>
-        <p>Select the subscription that fits your needs and budget.</p>
+        <h3>Choose Your Support</h3>
+        <p>Continue with free SAI self-service or request optional paid human support.</p>
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <h3>Submit Documents</h3>
-        <p>Send documents securely via email, mail, or through this portal.</p>
+        <h3>Receive a Quote</h3>
+        <p>We review the request and confirm the scope, price, availability, and safe submission method.</p>
       </div>
       <div class="step">
         <div class="step-num">4</div>
-        <h3>Receive Support</h3>
-        <p>Get professionally formatted documents returned within 3–5 days.</p>
+        <h3>Approve & Begin</h3>
+        <p>Work begins only after you approve the written quote and payment instructions.</p>
       </div>
     </div>
   </div>
@@ -412,10 +414,10 @@
 <section class="form-section" id="family-portal">
   <div class="section-inner">
     <p class="section-label" style="color:var(--gold-lt);">Get Started</p>
-    <h2 style="color:var(--blush-pale);">Register for <em style="color:var(--gold-lt);">family support.</em></h2>
+    <h2 style="color:var(--blush-pale);">Request <em style="color:var(--gold-lt);">paid document support.</em></h2>
     <p class="form-intro">
-      Fill out the form below to register. We'll be in touch within 24 hours
-      to set up your account and get started.
+      Tell us what kind of clerical or formatting support you need. This form is an inquiry—not an agreement
+      to perform services. If the request fits our availability, you'll receive a written quote and next steps within 3 business days.
     </p>
 
     <!-- FAMILY PORTAL FORM -->
@@ -446,14 +448,14 @@
               placeholder="(000) 000-0000">
           </div>
           <div>
-            <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Plan Interested In *</label>
-            <select name="plan" required
+            <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Support Requested *</label>
+            <select name="service" required
               style="width:100%; padding:0.75rem 1rem; background:var(--cream); border:1px solid var(--border); border-radius:8px; font-family:'Nunito',sans-serif; font-size:0.95rem; color:var(--ink); outline:none;">
-              <option value="">Select a plan...</option>
-              <option>Family Support Plan — $24.99/mo</option>
-              <option>Basic Plan — $9.99/mo</option>
-              <option>Standard Plan — $19.99/mo</option>
-              <option>Pro Plan — $39.99/mo</option>
+              <option value="">Select a service...</option>
+              <option>Document Polish — starting at $49</option>
+              <option>Full Document Formatting — starting at $99</option>
+              <option>Family Coordination — starting at $79</option>
+              <option>Priority Service — availability varies</option>
               <option>Not sure yet</option>
             </select>
           </div>
@@ -461,14 +463,14 @@
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
           <div>
-            <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Loved One's Name *</label>
-            <input type="text" name="loved_one_name" required
+            <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Loved One's Name (optional)</label>
+            <input type="text" name="loved_one_name"
               style="width:100%; padding:0.75rem 1rem; background:var(--cream); border:1px solid var(--border); border-radius:8px; font-family:'Nunito',sans-serif; font-size:0.95rem; color:var(--ink); outline:none;"
               placeholder="First and last name">
           </div>
           <div>
-            <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Facility Name & Location *</label>
-            <input type="text" name="facility" required
+            <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Facility Name & Location (optional)</label>
+            <input type="text" name="facility"
               style="width:100%; padding:0.75rem 1rem; background:var(--cream); border:1px solid var(--border); border-radius:8px; font-family:'Nunito',sans-serif; font-size:0.95rem; color:var(--ink); outline:none;"
               placeholder="Facility name, city, state">
           </div>
@@ -490,11 +492,26 @@
           </select>
         </div>
 
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
+          <div>
+            <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Estimated Page Count *</label>
+            <input type="number" name="page_count" min="1" required
+              style="width:100%; padding:0.75rem 1rem; background:var(--cream); border:1px solid var(--border); border-radius:8px; font-family:'Nunito',sans-serif; font-size:0.95rem; color:var(--ink); outline:none;"
+              placeholder="Example: 6">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Known Deadline (optional)</label>
+            <input type="text" name="known_deadline"
+              style="width:100%; padding:0.75rem 1rem; background:var(--cream); border:1px solid var(--border); border-radius:8px; font-family:'Nunito',sans-serif; font-size:0.95rem; color:var(--ink); outline:none;"
+              placeholder="Only enter a date already provided to you">
+          </div>
+        </div>
+
         <div style="margin-bottom:1.25rem;">
-          <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">Brief Description of the Case</label>
+          <label style="display:block; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--choc-lt); margin-bottom:0.4rem; font-weight:700;">What Document Support Do You Need?</label>
           <textarea name="description" rows="4"
             style="width:100%; padding:0.75rem 1rem; background:var(--cream); border:1px solid var(--border); border-radius:8px; font-family:'Nunito',sans-serif; font-size:0.95rem; color:var(--ink); outline:none; resize:vertical;"
-            placeholder="Tell us a little about the situation and what you need help with..."></textarea>
+            placeholder="Describe the typing, proofreading, formatting, or coordination help you need. Do not include sensitive personal details or ask for legal advice."></textarea>
         </div>
 
         <div style="margin-bottom:2rem;">
@@ -517,14 +534,19 @@
           </p>
         </div>
 
+        <label style="display:flex; gap:0.75rem; align-items:flex-start; margin-bottom:1.5rem; font-size:0.82rem; color:var(--ink-muted); line-height:1.6;">
+          <input type="checkbox" name="service_acknowledgment" required style="margin-top:0.3rem;">
+          <span>I understand that this is a service inquiry, not legal representation; submitting it does not guarantee acceptance or a deadline; and work begins only after written scope, price, availability, and payment instructions are approved.</span>
+        </label>
+
         <button type="submit"
           style="width:100%; padding:1rem; background:linear-gradient(135deg, var(--choc-lt), var(--choc)); color:var(--gold-pale); font-family:'Nunito',sans-serif; font-size:1rem; font-weight:700; border:1px solid var(--gold-lt); border-radius:50px; cursor:pointer; letter-spacing:0.02em; transition:all 0.2s;">
-          Submit Registration →
+          Submit Support Request →
         </button>
 
         <div id="formSuccess" style="display:none; margin-top:1.5rem; background:var(--blush-pale); border:1px solid var(--rose-lt); border-radius:8px; padding:1.25rem; text-align:center;">
-          <p style="color:var(--choc); font-weight:600; font-family:'Cormorant Garamond',serif; font-size:1.1rem;">Thank you — we received your registration! 💛</p>
-          <p style="color:var(--ink-muted); font-size:0.9rem; margin-top:0.5rem;">We'll be in touch within 24 hours to get started.</p>
+          <p style="color:var(--choc); font-weight:600; font-family:'Cormorant Garamond',serif; font-size:1.1rem;">Thank you — we received your support request! 💛</p>
+          <p style="color:var(--ink-muted); font-size:0.9rem; margin-top:0.5rem;">If the request fits our availability, we'll send a written quote and next steps within 3 business days. Work does not begin until you approve the quote and payment instructions.</p>
         </div>
 
       </form>
@@ -593,13 +615,12 @@
   </div>
   <div class="footer-inner" style="padding-top:0;">
     <p class="footer-disclaimer">
-      Pro Se It Ain't So provides document typing, formatting, and clerical services ONLY.
+      Pro Se It Ain't So provides document typing, proofreading, formatting, and clerical services ONLY.
       We are NOT attorneys and do NOT provide legal advice, legal representation, or legal opinions.
-      All documents are typed and formatted exactly as YOU specify.
-      You are responsible for all legal decisions and content.
+      You supply and approve all legal content and remain responsible for legal decisions, accuracy, verification, and filing.
       We strongly recommend consulting a licensed attorney for legal advice about your case.
     </p>
-    <p class="footer-copy">© 2024 Pro Se It Ain't So. All rights reserved.</p>
+    <p class="footer-copy">© 2026 Pro Se It Ain't So. All rights reserved.</p>
   </div>
 </footer>
 
